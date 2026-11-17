@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>栗子tc · 把想象中的事物变成现实</title>
+<meta name="description" content="栗子tc 的个人网站：AI、二次元与数字创作。AI 桌宠、Live2D 风格角色、图库应用与自动化创作项目。">
+<meta name="theme-color" content="#16132a">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>
+/* 在首帧之前确定主题，避免闪烁：自动模式下 6–18 点为白天 */
+(function () {
+  var d = document.documentElement, t = 'auto';
+  d.classList.add('js');
+  try { t = (JSON.parse(localStorage.getItem('lizitc.cfg') || '{}').theme) || 'auto'; } catch (e) {}
+  if (t === 'auto') { var h = new Date().getHours(); t = (h >= 6 && h < 18) ? 'day' : 'night'; }
+  d.dataset.theme = t;
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Serif+SC:wght@600;900&family=Quicksand:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ===== SVG 图标 ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.6 2.8 6 6.6.8-4.9 4.5 1.3 6.5-5.8-3.3-5.8 3.3 1.3-6.5L2.6 9.4l6.6-.8Z"/></symbol>
+  <symbol id="i-fork" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6.5" cy="5" r="2.2"/><circle cx="17.5" cy="5" r="2.2"/><circle cx="12" cy="19" r="2.2"/><path d="M6.5 7.2v2.3a3 3 0 0 0 3 3h5a3 3 0 0 0 3-3V7.2M12 12.5v4.3"/></g></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.2A8.3 8.3 0 0 1 9.8 4a8.3 8.3 0 1 0 10.2 10.2Z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><circle cx="12" cy="12" r="3.1"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.5-2-3.4-2.3 1a7.6 7.6 0 0 0-2.6-1.5L14.1 2.5H9.9l-.4 2.6a7.6 7.6 0 0 0-2.6 1.5l-2.3-1-2 3.4 2 1.5a7.6 7.6 0 0 0 0 3l-2 1.5 2 3.4 2.3-1a7.6 7.6 0 0 0 2.6 1.5l.4 2.6h4.2l.4-2.6a7.6 7.6 0 0 0 2.6-1.5l2.3 1 2-3.4Z"/></g></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 19V6M6 11.5 12 5.5l6 6"/></symbol>
+  <!-- 特质图标 -->
+  <symbol id="t-curious" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 13.6 8l4.8 1.6-4.8 1.6L12 16l-1.6-4.8L5.6 9.6 10.400 8Z"/><path d="M18.500 15.500l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7Z"/></g></symbol>
+  <symbol id="t-result" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.500"/><path d="m8.200 12.300 2.700 2.700 5-5.500"/></g></symbol>
+  <symbol id="t-detail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.500" cy="10.500" r="6"/><path d="m15 15 5.500 5.500M8 10.500h5M10.500 8v5"/></g></symbol>
+  <symbol id="t-try" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9.500 3.500h5M10.500 3.500v5.300L5.300 18a2 2 0 0 0 1.800 3h9.800a2 2 0 0 0 1.800-3L13.500 8.800V3.500"/><path d="M7.800 14.500h8.400"/></g></symbol>
+  <symbol id="t-auto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19.500 8.500A8 8 0 0 0 5 9M4.500 15.500A8 8 0 0 0 19 15"/><path d="M19.800 4.500v4.200h-4.200M4.200 19.500v-4.200h4.200"/></g></symbol>
+  <symbol id="t-create" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m4 20 1.200-4.600L16.400 4.200a1.900 1.900 0 0 1 2.700 0l.7.7a1.900 1.900 0 0 1 0 2.700L8.600 18.800Z"/><path d="m14.500 6.200 3.300 3.300"/></g></symbol>
+</svg>
+
+<!-- ===== 载入画面 ===== -->
+<div id="loader" role="status" aria-label="载入中">
+  <div class="loader-box">
+    <svg class="loader-kuri" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M14 26 10 9l14 8Z" fill="#b9805a"/><path d="M50 26 54 9l-14 8Z" fill="#b9805a"/>
+      <path d="M14.500 22 12.500 13l7.500 4.300Z" fill="#ffe9d6"/><path d="M49.500 22 51.500 13 44 17.300Z" fill="#ffe9d6"/>
+      <path d="M32 12c14 0 24 12 24 25 0 12-10 19-24 19S8 49 8 37c0-13 10-25 24-25Z" fill="#b9805a"/>
+      <path d="M12 44c4 8 11 12 20 12s16-4 20-12c-6 3-13 4.500-20 4.500S18 47 12 44Z" fill="#ffe9d6"/>
+      <circle cx="23" cy="34" r="2.600" fill="#4b3a4c"/><circle cx="41" cy="34" r="2.600" fill="#4b3a4c"/>
+      <path d="M29 39.500q3 2.600 6 0" fill="none" stroke="#4b3a4c" stroke-width="1.800" stroke-linecap="round"/>
+      <ellipse cx="18" cy="39" rx="3.200" ry="1.800" fill="#f8a9c6" opacity=".8"/><ellipse cx="46" cy="39" rx="3.200" ry="1.800" fill="#f8a9c6" opacity=".8"/>
+    </svg>
+    <p class="loader-text">Now Loading<span>.</span><span>.</span><span>.</span></p>
+    <div class="loader-bar"><i></i></div>
+  </div>
+</div>
+
+<!-- ===== 背景与粒子 ===== -->
+<div class="backdrop" aria-hidden="true"></div>
+<canvas id="petals" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+<!-- ===== 顶部导航 ===== -->
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="回到顶部">
+    <span class="nav-logo-cn">栗子</span><span class="nav-logo-tc">tc</span>
+  </a>
+  <nav class="nav-links" aria-label="章节导航">
+    <a href="#about" data-sec="about"><b>01</b>关于我</a>
+    <a href="#works" data-sec="works"><b>02</b>作品</a>
+    <a href="#toolbox" data-sec="toolbox"><b>03</b>工具箱</a>
+    <a href="#memory" data-sec="memory"><b>04</b>AI 的记忆</a>
+  </nav>
+  <div class="nav-tools">
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="切换白天 / 夜晚">
+      <svg class="ic-sun"><use href="#i-sun"/></svg><svg class="ic-moon"><use href="#i-moon"/></svg>
+    </button>
+    <button class="icon-btn" id="cfgBtn" type="button" aria-label="打开环境设定" aria-controls="config" aria-expanded="false">
+      <svg><use href="#i-gear"/></svg>
+    </button>
+    <a class="icon-btn" href="https://github.com/lizitc" target="_blank" rel="noopener" aria-label="GitHub 主页">
+      <svg><use href="#i-github"/></svg>
+    </a>
+  </div>
+</header>
+
+<main>
+<!-- ============================================================
+     标题画面
+     ============================================================ -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <img class="bg-day" src="assets/img/bg/cafe-day.jpg" alt="">
+    <img class="bg-night" src="assets/img/bg/cafe-night.jpg" alt="">
+    <div class="hero-shade"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-kicker"><i></i>Welcome to my little studio<i></i></p>
+      <h1 class="logo" aria-label="栗子tc">
+        <span class="logo-cn" aria-hidden="true"><span class="ch">栗</span><span class="ch">子</span></span><span class="logo-tc" aria-hidden="true">tc</span>
+      </h1>
+      <p class="logo-sub">LIZITC<span>·</span>AI<span>×</span>ANIME<span>×</span>CREATION</p>
+      <p class="tagline">把想象中的事物，<wbr><em>变成现实。</em></p>
+
+      <nav class="title-menu" aria-label="标题菜单">
+        <a href="#about"><span class="tm-en">START</span><span class="tm-cn">认识我</span></a>
+        <a href="#works"><span class="tm-en">GALLERY</span><span class="tm-cn">作品陈列</span></a>
+        <a href="#toolbox"><span class="tm-en">SYSTEM</span><span class="tm-cn">工具箱</span></a>
+        <a href="#memory"><span class="tm-en">EXTRA</span><span class="tm-cn">AI 的记忆</span></a>
+        <button type="button" id="cfgBtn2"><span class="tm-en">CONFIG</span><span class="tm-cn">环境设定</span></button>
+      </nav>
+    </div>
+
+    <div class="hero-char" id="heroChar">
+      <div class="char-glow" aria-hidden="true"></div>
+      <img class="char-img" src="assets/img/mascot/kuri-stand-v2.png" alt="本站看板娘小栗：栗色长发的猫耳少女"
+           onerror="this.closest('.hero-char').classList.add('is-missing')">
+    </div>
+  </div>
+
+  <!-- ADV 对话框 -->
+  <div class="adv" id="adv">
+    <div class="adv-name"><span id="advName">小栗</span></div>
+    <div class="adv-tools">
+      <button type="button" id="advAuto" class="on" aria-pressed="true">AUTO</button>
+      <button type="button" id="advLog" aria-expanded="false">LOG</button>
+      <a href="#about">SKIP</a>
+    </div>
+    <button class="adv-body" id="advBody" type="button" aria-label="点击继续对话">
+      <span class="adv-text" id="advText" aria-live="polite"></span>
+      <span class="adv-next" aria-hidden="true">▼</span>
+    </button>
+    <div class="adv-log" id="advLogPanel" hidden>
+      <p class="adv-log-title">BACKLOG</p>
+      <ol id="advLogList"></ol>
+    </div>
+  </div>
+
+  <a class="scroll-hint" href="#about" aria-label="向下滚动"><span>SCROLL</span><i></i></a>
+</section>
+
+<!-- 跑马灯 -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>AI Agent</span><i>✦</i><span>Live2D</span><i>✦</i><span>Galgame</span><i>✦</i><span>WebGL2</span><i>✦</i><span>Electron</span><i>✦</i><span>GPT-SoVITS</span><i>✦</i><span>Remotion</span><i>✦</i><span>Flutter</span><i>✦</i><span>Claude Code</span><i>✦</i><span>Codex</span><i>✦</i><span>デスクトップマスコット</span><i>✦</i>
+    <span>AI Agent</span><i>✦</i><span>Live2D</span><i>✦</i><span>Galgame</span><i>✦</i><span>WebGL2</span><i>✦</i><span>Electron</span><i>✦</i><span>GPT-SoVITS</span><i>✦</i><span>Remotion</span><i>✦</i><span>Flutter</span><i>✦</i><span>Claude Code</span><i>✦</i><span>Codex</span><i>✦</i><span>デスクトップマスコット</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ============================================================
+     01 关于我
+     ============================================================ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-ghost" aria-hidden="true">PROFILE</span>
+      <p class="sec-chapter"><i></i>CHAPTER 01</p>
+      <h2 class="sec-title">关于我<small lang="ja">プロフィール</small></h2>
+    </header>
+
+    <div class="about-grid">
+      <!-- 角色卡 -->
+      <aside class="profile card reveal" data-tilt>
+        <div class="profile-top">
+          <div class="avatar">
+            <span class="avatar-ring" aria-hidden="true"></span>
+            <img src="assets/img/avatar.png" alt="栗子tc 的头像" width="400" height="400">
+          </div>
+          <div>
+            <p class="profile-name">栗子tc</p>
+            <p class="profile-id">@lizitc</p>
+          </div>
+        </div>
+        <ul class="profile-tags">
+          <li>AI 玩家</li><li>二次元</li><li>独立开发</li><li>数字创作</li>
+        </ul>
+        <dl class="profile-list">
+          <div><dt>署名</dt><dd>栗子 / 栗子tc</dd></div>
+          <div><dt>主场</dt><dd>Windows · RTX 5060 Laptop（8GB 显存）</dd></div>
+          <div><dt>语言</dt><dd>中文 · English · <span lang="ja">日本語</span> N4（学习中）</dd></div>
+          <div><dt>喜欢</dt><dd>Galgame、萌系立绘、柔和统一的画面</dd></div>
+          <div><dt>正在做</dt><dd>AI 桌宠 · Live2D 风格角色 · 自动化视频</dd></div>
+        </dl>
+        <div class="profile-stats">
+          <div><b data-count="3" id="statRepos">3</b><span>公开仓库</span></div>
+          <div><b data-count="27" id="statStars">27</b><span>GitHub Star</span></div>
+          <div><b>N4</b><span lang="ja">日本語</span></div>
+        </div>
+        <span class="card-glare" aria-hidden="true"></span>
+      </aside>
+
+      <!-- 自述 -->
+      <div class="about-text">
+        <p class="lead reveal">我不满足于只让 AI 回答问题，<br>我想让它<mark>真正参与创造、开发和执行</mark>。</p>
+        <p class="reveal">从一句需求描述开始，到技术选型、代码实现、视觉设计、部署和交付，我喜欢把一个想法完整地做成能用的东西。比起模型排行榜上的分数，我更在意它能不能在真实工程里解决复杂的问题。</p>
+        <p class="reveal">另一半的我属于二次元：Galgame、萌系角色、精致的立绘。我希望喜欢的角色不只停在一张图里，而是能住在桌面上，会呼吸、会眨眼、会回应。</p>
+
+        <div class="keys reveal">
+          <div class="key"><span>01</span><b>自主化</b><p>让 AI 尽可能自己把事情做完，而不是每一步都等人操作。</p></div>
+          <div class="key"><span>02</span><b>完整性</b><p>不止于“能跑”，要到可以交付、可以给别人用的程度。</p></div>
+          <div class="key"><span>03</span><b>持续迭代</b><p>动作不自然、字体不协调、细节有偏差，那就继续改。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="traits">
+      <li class="trait reveal"><svg><use href="#t-curious"/></svg><b>好奇心强</b><p>新模型、新软件、还没成熟的方案，都想亲手试试。</p></li>
+      <li class="trait reveal"><svg><use href="#t-result"/></svg><b>重视结果</b><p>比起空泛的理论，更想要能实际使用、部署和验证的成果。</p></li>
+      <li class="trait reveal"><svg><use href="#t-detail"/></svg><b>对细节敏感</b><p>配色、比例、饰品、动作之间的连续性，一处不对都看得出来。</p></li>
+      <li class="trait reveal"><svg><use href="#t-try"/></svg><b>愿意尝试</b><p>技术不成熟也没关系，先弄清它的可行性和边界在哪。</p></li>
+      <li class="trait reveal"><svg><use href="#t-auto"/></svg><b>追求自动化</b><p>重复的工作交给软件和 AI，把时间留给想法本身。</p></li>
+      <li class="trait reveal"><svg><use href="#t-create"/></svg><b>有创造欲</b><p>不只想体验已有的作品，也想做出自己的角色、工具和产品。</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 作品
+     ============================================================ -->
+<section class="sec" id="works">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-ghost" aria-hidden="true">WORKS</span>
+      <p class="sec-chapter"><i></i>CHAPTER 02</p>
+      <h2 class="sec-title">作品陈列<small lang="ja">さくひん</small></h2>
+      <p class="sec-desc">这些都开源在 GitHub 上，是我和 AI 一起做出来的。</p>
+    </header>
+
+    <!-- 作品 1：千绘莉 -->
+    <article class="work" data-repo="chieri-live2d">
+      <div class="work-visual reveal">
+        <div class="shot" data-tilt>
+          <div class="shot-bar"><i></i><i></i><i></i><span>千绘莉 · Live2D</span></div>
+          <img src="assets/img/works/chieri-screenshot.jpg" width="1264" height="713" loading="lazy"
+               alt="千绘莉站在咖啡店里，头顶的气泡写着“欢迎光临～今天也要来杯热可可吗？”，右侧是姿势、表情与动作面板">
+          <span class="card-glare" aria-hidden="true"></span>
+        </div>
+        <img class="sticker sticker-a" src="assets/img/works/chieri-st-happy.png" alt="" loading="lazy" width="226" height="240">
+        <img class="sticker sticker-b" src="assets/img/works/chieri-st-think.png" alt="" loading="lazy" width="232" height="240">
+      </div>
+      <div class="work-info reveal">
+        <p class="work-no">No.<b>01</b></p>
+        <h3 class="work-title">雪村千绘莉<small>Live2D 风格互动桌面宠物</small></h3>
+        <p class="work-repo">lizitc / chieri-live2d</p>
+        <p class="work-desc">只用两张平面立绘和一套表情差分，做成可以实时互动的角色。加载时在浏览器里把立绘切成图层、铺上网格，用手写的形变器实时变形，WebGL2 画出来。<strong>没有 Cubism，没有 .moc3，也没有任何运行时依赖。</strong></p>
+        <ul class="work-points">
+          <li>拽耳朵会生气，摸头会脸红，戳脸会凹下去</li>
+          <li>头发、裙摆、尾巴都有弹簧物理，尾巴节奏跟着心情变</li>
+          <li>接上大模型后，表情、动作和台词都由 AI 决定</li>
+          <li>Electron 桌宠外壳，内置 GPT-SoVITS 专属声线</li>
+        </ul>
+        <ul class="tags"><li>JavaScript</li><li>WebGL2</li><li>Electron</li><li>GPT-SoVITS</li><li>LLM</li></ul>
+        <div class="work-foot">
+          <span class="stat"><svg><use href="#i-star"/></svg><b data-k="stars">24</b></span>
+          <span class="stat"><svg><use href="#i-fork"/></svg><b data-k="forks">3</b></span>
+          <span class="stat-date">更新于 <b data-k="pushed">2026.11.04</b></span>
+          <a class="btn" href="https://github.com/lizitc/chieri-live2d" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>查看仓库<svg class="btn-arrow"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 作品 2：莓华 -->
+    <article class="work work-flip" data-repo="meihua-desktop-pet">
+      <div class="work-visual reveal">
+        <div class="shot shot-room" data-tilt>
+          <div class="shot-bar"><i></i><i></i><i></i><span>御园莓华 · 莓华手账</span></div>
+          <div class="room">
+            <img class="room-bg" src="assets/img/works/meihua-room.jpg" alt="" loading="lazy" width="1536" height="1024">
+            <img class="room-char" src="assets/img/works/meihua-stand.png" loading="lazy" width="508" height="1000"
+                 alt="御园莓华：白色长发、垂耳的犬系女仆，站在草莓主题的房间里">
+            <p class="room-chip chip-a"><b>你</b>明天下午三点和小林开会，提前半小时提醒我</p>
+            <p class="room-chip chip-b"><i></i>工坊 · 后台任务进行中</p>
+            <p class="room-chip chip-c"><i></i>技能待审核 · 番茄钟</p>
+          </div>
+          <span class="card-glare" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="work-info reveal">
+        <p class="work-no">No.<b>02</b></p>
+        <h3 class="work-title">御园莓华<small>AI 桌面伙伴与全职助手</small></h3>
+        <p class="work-repo">lizitc / meihua-desktop-pet</p>
+        <p class="work-desc">一只住在桌面上的犬系女仆。连上自己的 AI 接口之后，她的一举一动都由 AI 决定：<strong>能聊天、能管日程，还能在「工坊」里替你把电脑上的活干完。</strong></p>
+        <ul class="work-points">
+          <li>日程、待办、提醒和例行任务，到点会主动来叫你</li>
+          <li>「工坊」后台 Agent：计划、执行记录、产出文件一目了然</li>
+          <li>她会给自己写新技能和扩展，但要你审核通过才生效</li>
+          <li>密钥 DPAPI 加密，三档权限，高危命令一定会问</li>
+        </ul>
+        <ul class="tags"><li>JavaScript</li><li>Electron</li><li>AI Agent</li><li>Claude / OpenAI 协议</li><li>TTS</li></ul>
+        <div class="work-foot">
+          <span class="stat"><svg><use href="#i-star"/></svg><b data-k="stars">2</b></span>
+          <span class="stat"><svg><use href="#i-fork"/></svg><b data-k="forks">0</b></span>
+          <span class="stat-date">更新于 <b data-k="pushed">2026.11.12</b></span>
+          <a class="btn" href="https://github.com/lizitc/meihua-desktop-pet" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>查看仓库<svg class="btn-arrow"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 作品 3：栗子图库 -->
+    <article class="work" data-repo="LiziGallery">
+      <div class="work-visual reveal">
+        <div class="phone-stage" data-tilt>
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-head">
+              <img src="assets/img/works/gallery-icon.jpg" alt="" loading="lazy" width="512" height="512">
+              <div><b>栗子图库</b><span>12 个合集 · 3 个分类</span></div>
+            </div>
+            <div class="phone-chips"><span class="on">全部</span><span>插画</span><span>壁纸</span><span>#猫耳</span></div>
+            <div class="phone-grid">
+              <i style="--h:340"></i><i style="--h:260"></i><i style="--h:20"></i>
+              <i style="--h:200"></i><i style="--h:310"></i><i style="--h:40"></i>
+            </div>
+            <div class="phone-bar"><i></i></div>
+          </div>
+          <div class="phone-float float-a">一键备份恢复</div>
+          <div class="phone-float float-b">本地优先 · 无云端</div>
+          <span class="card-glare" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="work-info reveal">
+        <p class="work-no">No.<b>03</b></p>
+        <h3 class="work-title">栗子图库<small>LiziGallery · v3.0</small></h3>
+        <p class="work-repo">lizitc / LiziGallery</p>
+        <p class="work-desc">一个简洁、本地优先的 Flutter 图库应用。按「合集」整理图片与视频，再用「分类」和「标签」快速定位。<strong>没有账号，没有云端，数据都在自己手机里。</strong></p>
+        <ul class="work-points">
+          <li>合集、分类、标签三层整理，标签按交集筛选</li>
+          <li>开屏、首页、抽屉和每个合集都能自定义背景</li>
+          <li>双指缩放与旋转，底部缩略图快速跳转</li>
+          <li>一键打包备份，换新设备也能完整恢复</li>
+        </ul>
+        <ul class="tags"><li>Dart</li><li>Flutter</li><li>Material 3</li><li>Android</li><li>MIT</li></ul>
+        <div class="work-foot">
+          <span class="stat"><svg><use href="#i-star"/></svg><b data-k="stars">1</b></span>
+          <span class="stat"><svg><use href="#i-fork"/></svg><b data-k="forks">0</b></span>
+          <span class="stat-date">更新于 <b data-k="pushed">2026.10.15</b></span>
+          <a class="btn" href="https://github.com/lizitc/LiziGallery" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>查看仓库<svg class="btn-arrow"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 企划中 -->
+    <div class="plans">
+      <h3 class="plans-title reveal"><span>NEXT ROUTE</span>企划与探索中</h3>
+      <ul class="plan-grid">
+        <li class="plan card reveal">
+          <span class="plan-state">企划中</span>
+          <b>「音理」智能桌宠</b>
+          <p>保持角色性格的自然对话，加上精细的 UI、丰富的待机动作、日程管理和内置 Agent。</p>
+        </li>
+        <li class="plan card reveal">
+          <span class="plan-state">探索中</span>
+          <b>AI 自动化动漫 MV</b>
+          <p>用 Codex、Claude Code 和 Remotion，让 AI 独立完成策划、素材、配乐、镜头与渲染。</p>
+        </li>
+        <li class="plan card reveal">
+          <span class="plan-state">创作中</span>
+          <b>原创猫耳少女与表情包</b>
+          <p>以「栗子」署名的原创角色，追求发型、饰品、配色和比例在每一张图里都一致。</p>
+        </li>
+        <li class="plan card reveal">
+          <span class="plan-state">企划中</span>
+          <b>多用户图库网站</b>
+          <p>云服务器加对象存储，在有限的带宽和资源下做智能图片搜索，开发运维尽量交给 AI。</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 工具箱
+     ============================================================ -->
+<section class="sec" id="toolbox">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-ghost" aria-hidden="true">SYSTEM</span>
+      <p class="sec-chapter"><i></i>CHAPTER 03</p>
+      <h2 class="sec-title">工具箱<small lang="ja">スキル</small></h2>
+      <p class="sec-desc">常用和正在研究的东西。比起会用多少工具，我更关心它们能拼出什么。</p>
+    </header>
+
+    <div class="tool-grid">
+      <div class="tool card reveal">
+        <p class="tool-en">AI DEV</p><h3>AI 开发</h3>
+        <ul class="chips"><li>ChatGPT</li><li>Codex</li><li>Claude Code</li><li>Gemini</li><li>DeepSeek</li><li>Qwen</li><li>MiniMax</li></ul>
+      </div>
+      <div class="tool card reveal">
+        <p class="tool-en">VISUAL</p><h3>图像与动画</h3>
+        <ul class="chips"><li>Live2D Cubism</li><li>Ayatsuri2D</li><li>Remotion</li><li>Blender</li><li>AI 图像生成</li></ul>
+      </div>
+      <div class="tool card reveal">
+        <p class="tool-en">VOICE</p><h3>语音技术</h3>
+        <ul class="chips"><li>GPT-SoVITS</li><li>CosyVoice</li><li>VOICEVOX</li></ul>
+      </div>
+      <div class="tool card reveal">
+        <p class="tool-en">DEPLOY</p><h3>开发与部署</h3>
+        <ul class="chips"><li>GitHub</li><li>Linux</li><li>阿里云 ECS</li><li>OSS</li><li>SSH</li><li>云服务与 API</li></ul>
+      </div>
+      <div class="tool card reveal">
+        <p class="tool-en">LOCAL LLM</p><h3>本地模型</h3>
+        <ul class="chips"><li>模型量化</li><li>GPU 推理</li><li>CPU / GPU 混合卸载</li><li>推理性能优化</li></ul>
+      </div>
+      <div class="tool card reveal">
+        <p class="tool-en">WATCHING</p><h3>长期关注</h3>
+        <ul class="chips"><li>AI Agent</li><li>Computer Use</li><li>自主编程</li><li>工具调用</li><li>多智能体协作</li></ul>
+      </div>
+    </div>
+
+    <div class="study card reveal">
+      <div class="study-head">
+        <p class="tool-en">STUDY LOG</p>
+        <h3>正在学习</h3>
+      </div>
+      <ul class="study-list">
+        <li><b lang="ja">日本語</b><span>目前 N4，继续往上</span></li>
+        <li><b>高等数学</b><span>极限、导数、三角函数</span></li>
+        <li><b>计算机体系结构</b><span>算力、显存与模型训练</span></li>
+        <li><b>云计算与网络</b><span>云服务、网络协议</span></li>
+        <li><b>AI 产业</b><span>开源与闭源、技术生态</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 AI 的记忆
+     ============================================================ -->
+<section class="sec" id="memory">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <span class="sec-ghost" aria-hidden="true">EXTRA</span>
+      <p class="sec-chapter"><i></i>CHAPTER 04</p>
+      <h2 class="sec-title">AI 的记忆<small lang="ja">きおく</small></h2>
+      <p class="sec-desc">我让长期合作的 AI 写下它记得的我。下面是它存下的几个档位。</p>
+    </header>
+
+    <ol class="saves">
+      <li class="save card reveal">
+        <div class="save-meta"><span class="save-no">SAVE 01</span><time datetime="2026-11-16">2026/11/16</time></div>
+        <blockquote>你希望 AI 不只存在于对话框中，而是能够真正融入你的数字生活，帮助你创造原本难以独自完成的事物。</blockquote>
+        <p class="save-by">ChatGPT 的记忆档案</p>
+      </li>
+      <li class="save card reveal">
+        <div class="save-meta"><span class="save-no">SAVE 02</span><time datetime="2026-11-16">2026/11/16</time></div>
+        <blockquote>你希望 AI 能成为长期合作的开发者、创作者与助手，而不是一次性回答问题的搜索工具。</blockquote>
+        <p class="save-by">ChatGPT 的记忆档案</p>
+      </li>
+      <li class="save save-wide card reveal">
+        <div class="save-meta"><span class="save-no">SAVE 03</span><time datetime="2026-11-16">2026/11/16</time><span class="save-flag">LATEST</span></div>
+        <blockquote class="big">我不知道未来你最终会完成多少个项目，也无法准确预测你会走向哪一个方向。但截至这份记录形成之时，我所认识的你，<em>始终在尝试把想象中的事物变成现实。</em></blockquote>
+        <p class="save-by">ChatGPT 的记忆档案 · 写在最后</p>
+      </li>
+    </ol>
+
+    <p class="musing reveal">随着模型不断更新，熟悉的 AI 会不会变得陌生？<br>我不确定。所以想把这些记忆，留在一个属于自己的地方。</p>
+  </div>
+</section>
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer-script reveal">To be continued…</p>
+    <p class="footer-lead reveal">下一个作品，正在路上。</p>
+    <a class="btn btn-lg reveal" href="https://github.com/lizitc" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>github.com/lizitc<svg class="btn-arrow"><use href="#i-arrow"/></svg></a>
+    <div class="footer-meta">
+      <p>© 2026 栗子tc</p>
+      <p>同人项目中的角色与原作素材，版权归原作者及权利方所有，仅作非商业展示。看板娘「小栗」为本站原创角色，由 AI 辅助绘制。</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== 站内小看板娘 ===== -->
+<div class="pet" id="pet">
+  <p class="pet-bubble" id="petBubble" role="status"></p>
+  <button class="pet-face" id="petBtn" type="button" aria-label="戳一下小栗">
+    <img src="assets/img/mascot/kuri-stand-v2.png" alt="" onerror="document.getElementById('pet').classList.add('is-missing')">
+  </button>
+  <button class="pet-top" id="topBtn" type="button" aria-label="回到顶部"><svg><use href="#i-up"/></svg></button>
+</div>
+
+<!-- ===== CONFIG 抽屉 ===== -->
+<div class="cfg-mask" id="cfgMask" hidden></div>
+<aside class="cfg" id="config" aria-label="环境设定" aria-hidden="true" inert>
+  <div class="cfg-head">
+    <div><p class="tool-en">CONFIG</p><h2>环境设定</h2></div>
+    <button class="icon-btn" id="cfgClose" type="button" aria-label="关闭"><svg><use href="#i-close"/></svg></button>
+  </div>
+
+  <div class="cfg-row">
+    <p class="cfg-label">画面主题<small>自动模式下 6–18 点为白天</small></p>
+    <div class="seg" id="cfgTheme" role="radiogroup" aria-label="画面主题">
+      <button type="button" role="radio" data-v="auto">自动</button>
+      <button type="button" role="radio" data-v="day">白天</button>
+      <button type="button" role="radio" data-v="night">夜晚</button>
+    </div>
+  </div>
+  <div class="cfg-row">
+    <label class="cfg-label" for="cfgPetals">花瓣数量<small id="cfgPetalsOut">60</small></label>
+    <input type="range" id="cfgPetals" min="0" max="100" step="5" value="60">
+  </div>
+  <div class="cfg-row">
+    <label class="cfg-label" for="cfgSpeed">文字速度<small id="cfgSpeedOut">60</small></label>
+    <input type="range" id="cfgSpeed" min="10" max="100" step="5" value="60">
+  </div>
+  <div class="cfg-row cfg-inline">
+    <label class="cfg-label" for="cfgFx">光标特效<small>移动时的星屑与点击时的爱心</small></label>
+    <label class="switch"><input type="checkbox" id="cfgFx" checked><i></i></label>
+  </div>
+  <button class="btn btn-ghost" id="cfgReset" type="button">恢复默认</button>
+  <p class="cfg-note">设定只保存在这台设备的浏览器里。</p>
+</aside>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# 密钥与本地文件，不要提交
+githubkey.txt
+*.key
+.env
+
+# 工具与生成过程的中间文件
+.claude/
+output/
