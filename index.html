@@ -102,7 +102,7 @@
   </a>
   <nav class="nav-links" id="navLinks" aria-label="主导航">
     <a href="#profile"><span>档案</span><small>Profile</small></a>
-    <a href="#works"><span>作品</span><small>Works</small></a>
+    <a href="#works"><span>作品</span><small>Works</small><i class="nav-new" aria-label="有新作品"></i></a>
     <a href="#routes"><span>路线</span><small>Routes</small></a>
     <a href="#skills"><span>技能</span><small>Skills</small></a>
     <a href="#memory"><span>存档</span><small>Save</small></a>
@@ -126,6 +126,15 @@
   <p class="hero-vertical" aria-hidden="true">栗子のアトリエ ・ Since 2025</p>
 
   <div class="hero-copy">
+    <a class="hero-news" href="#work-xingbai" data-spotlight="work-xingbai" aria-label="新作公开：诺瓦 · 星白桌宠，点击查看">
+      <span class="hn-avatar" aria-hidden="true"><img src="assets/img/nova-head.png" alt="" width="128" height="128"></span>
+      <span class="hn-text">
+        <small><svg><use href="#i-sparkle"/></svg>新作公开 · New Release</small>
+        <b>诺瓦 · 星白桌宠</b>
+      </span>
+      <span class="hn-go" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+      <span class="hn-ribbon" aria-hidden="true">NEW</span>
+    </a>
     <p class="hero-kicker"><i class="dia"></i>Welcome to Kuri's Atelier<i class="dia"></i></p>
     <h1 class="hero-title" aria-label="栗子tc">
       <span class="ht-ch" style="--i:0">栗</span><span class="ht-ch" style="--i:1">子</span><span class="ht-tc">tc<svg class="ht-spark"><use href="#i-sparkle"/></svg></span>
@@ -136,7 +145,7 @@
 
     <ul class="title-menu" aria-label="标题菜单">
       <li style="--i:0"><a href="#profile"><span class="tm-en">NEW GAME</span><span class="tm-zh">认识栗子</span></a></li>
-      <li style="--i:1"><a href="#works"><span class="tm-en">CONTINUE</span><span class="tm-zh">作品鉴赏</span></a></li>
+      <li style="--i:1"><a href="#works"><span class="tm-en">CONTINUE</span><span class="tm-zh">作品鉴赏</span><i class="tm-new">NEW</i></a></li>
       <li style="--i:2"><a href="#memory"><span class="tm-en">EXTRA</span><span class="tm-zh">记忆存档</span></a></li>
       <li style="--i:3"><button type="button" data-open-config><span class="tm-en">CONFIG</span><span class="tm-zh">环境设定</span></button></li>
     </ul>
@@ -276,7 +285,7 @@
 </section>
 
 <!-- ============ 02 · 作品鉴赏 ============ -->
-<section class="section works" id="works" data-pet="这些都是栗子亲手做出来的作品！点「详细」可以看到更多哦。">
+<section class="section works" id="works" data-pet="新作「诺瓦 · 星白桌宠」刚刚公开！这些都是栗子亲手做的，点「详细」能看到更多哦。">
   <header class="sec-head reveal">
     <span class="sec-no" aria-hidden="true">02</span>
     <p class="sec-en">Chapter 02 · Works Gallery</p>
@@ -285,6 +294,36 @@
   </header>
 
   <div class="works-grid">
+    <!-- 诺瓦（新作） -->
+    <article class="work work-feature work-new rev reveal" id="work-xingbai" data-repo="xingbai-desktop-pet">
+      <div class="work-media media-nova" data-tilt>
+        <img class="work-img" src="assets/img/nova-suitcase.jpg" alt="诺瓦坐在行李箱上，手里提着发光的星星灯" loading="lazy" width="1400" height="933">
+        <p class="nova-bubble" aria-hidden="true">可以让我搬到你的桌面上吗？</p>
+        <img class="work-sticker nova-sticker" src="assets/img/nova-chibi.png" alt="" loading="lazy" width="320" height="320">
+        <span class="work-badge new"><svg><use href="#i-sparkle"/></svg>NEW RELEASE</span>
+        <span class="glare" aria-hidden="true"></span>
+      </div>
+      <div class="work-body">
+        <p class="work-kicker">AI Desktop Pet · WebGL · Zero npm</p>
+        <h3 class="work-title">诺瓦 · 星白桌宠 <small>xingbai-desktop-pet</small></h3>
+        <p class="work-desc">只用<b>一张立绘</b>，靠 WebGL 网格形变做出接近 Live2D 的 AI 桌面宠物：会聊天、会说话、会记日程，还能在「Agent 工坊」里养会自己干活的小助手。Electron，<b>零 npm 依赖</b>。</p>
+        <ul class="work-points">
+          <li>拽猫耳、揉头发、拖尾巴，「转身」后所有操作随之镜像</li>
+          <li>星空圆盘菜单：圆盘就是她的头，指到哪项她就有反应</li>
+          <li>「诺瓦的星历」：一句话记事，到点举着小闹钟来提醒</li>
+          <li>Agent 工坊：勾选能力、设定时机，小助手自动运行</li>
+        </ul>
+        <div class="work-tags"><span>JavaScript</span><span>WebGL</span><span>Electron</span><span>Claude API</span><span>TTS</span><span>Codex 生图</span></div>
+        <div class="work-foot">
+          <span class="stat" title="Stars"><svg><use href="#i-star"/></svg><b data-stat="stars">0</b></span>
+          <span class="stat" title="Forks"><svg><use href="#i-fork"/></svg><b data-stat="forks">0</b></span>
+          <span class="work-foot-sp"></span>
+          <button class="btn btn-ghost" type="button" data-detail="xingbai">详细<svg><use href="#i-right"/></svg></button>
+          <a class="btn" href="https://github.com/lizitc/xingbai-desktop-pet" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>仓库</a>
+        </div>
+      </div>
+    </article>
+
     <!-- 千绘莉 -->
     <article class="work work-feature reveal" data-repo="chieri-live2d">
       <div class="work-media" data-tilt>
@@ -305,7 +344,7 @@
         </ul>
         <div class="work-tags"><span>JavaScript</span><span>WebGL2</span><span>Electron</span><span>GPT-SoVITS</span><span>LLM</span></div>
         <div class="work-foot">
-          <span class="stat" title="Stars"><svg><use href="#i-star"/></svg><b data-stat="stars">24</b></span>
+          <span class="stat" title="Stars"><svg><use href="#i-star"/></svg><b data-stat="stars">25</b></span>
           <span class="stat" title="Forks"><svg><use href="#i-fork"/></svg><b data-stat="forks">3</b></span>
           <span class="work-foot-sp"></span>
           <button class="btn btn-ghost" type="button" data-detail="chieri">详细<svg><use href="#i-right"/></svg></button>
@@ -333,7 +372,7 @@
         </ul>
         <div class="work-tags"><span>Electron</span><span>Agent</span><span>Tool Use</span><span>TTS</span></div>
         <div class="work-foot">
-          <span class="stat" title="Stars"><svg><use href="#i-star"/></svg><b data-stat="stars">2</b></span>
+          <span class="stat" title="Stars"><svg><use href="#i-star"/></svg><b data-stat="stars">3</b></span>
           <span class="stat" title="Forks"><svg><use href="#i-fork"/></svg><b data-stat="forks">0</b></span>
           <span class="work-foot-sp"></span>
           <button class="btn btn-ghost" type="button" data-detail="meihua">详细<svg><use href="#i-right"/></svg></button>
@@ -422,12 +461,20 @@
           <p>会聊天、管日程，还能在「工坊」里自主完成电脑上的工作。</p>
         </div>
       </li>
+      <li class="node clear reveal">
+        <span class="node-dot" aria-hidden="true"></span>
+        <div class="node-card">
+          <div class="node-meta"><time>2026.11</time><span class="node-state">CLEAR</span></div>
+          <h3>栗子のアトリエ</h3>
+          <p>你正在看的这个个人网站，绑定了 www.lizitc.com。</p>
+        </div>
+      </li>
       <li class="node clear now reveal">
         <span class="node-dot" aria-hidden="true"></span>
         <div class="node-card">
-          <div class="node-meta"><time>NOW</time><span class="node-state">CLEAR</span></div>
-          <h3>栗子のアトリエ</h3>
-          <p>你正在看的这个个人网站。</p>
+          <div class="node-meta"><time>NEW</time><span class="node-state">CLEAR</span></div>
+          <h3>诺瓦 · 星白桌宠</h3>
+          <p>一张立绘做出的 AI 桌宠：星空菜单、诺瓦的星历、Agent 工坊，零 npm 依赖。</p>
         </div>
       </li>
       <li class="node progress reveal">
@@ -599,8 +646,8 @@
         <h3>lizitc <small>@GitHub</small></h3>
         <p>AI × ACG × 数字创作 · 欢迎来点个 Star ☆</p>
         <ul class="gh-stats">
-          <li><b data-gh="repos">4</b><span>仓库</span></li>
-          <li><b data-gh="stars">27</b><span>Stars</span></li>
+          <li><b data-gh="repos">5</b><span>仓库</span></li>
+          <li><b data-gh="stars">29</b><span>Stars</span></li>
           <li><b data-gh="forks">3</b><span>Forks</span></li>
           <li><b data-gh="followers">1</b><span>关注者</span></li>
         </ul>
@@ -616,7 +663,7 @@
       <p><span>记忆提供</span><b>ChatGPT</b></p>
       <p><span>协力</span><b>Claude Code · Codex</b></p>
     </div>
-    <p class="disclaimer">同人项目（千绘莉、莓华）中的角色与原作素材，版权归原作者及权利方所有，仅作非商业展示。看板娘「小栗」为本站原创角色，由 AI 辅助绘制。</p>
+    <p class="disclaimer">作品中使用的非原创角色与原作素材，版权归原作者及权利方所有，仅作非商业展示。看板娘「小栗」为本站原创角色，由 AI 辅助绘制。</p>
     <p class="copy"><svg><use href="#i-chestnut"/></svg>© 2026 栗子tc · Made with ♥ and a lot of AI</p>
   </footer>
 </section>
@@ -703,6 +750,31 @@
   <p>表情差分用梯度 NCC 自动对齐到立绘；加载时只在真正变化的区域羽化贴合，所以没有接缝。头发弹簧只作用于真正的头发像素：从发丝中心线出发泛洪填充，遇到线稿就停下。双马尾和裙摆被切成独立图层，被拉开时露出的部分会按行重建。</p>
   <div class="dt-tags"><span>JavaScript</span><span>WebGL2</span><span>Electron</span><span>GPT-SoVITS</span><span>LLM API</span></div>
   <div class="dt-actions"><a class="btn" href="https://github.com/lizitc/chieri-live2d" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>查看仓库<svg><use href="#i-arrow"/></svg></a></div>
+</template>
+
+<template id="tpl-detail-xingbai">
+  <div class="dt-hero"><img src="assets/img/nova-calendar.jpg" alt="诺瓦坐在月牙上翻看星星日历"></div>
+  <p class="dt-kicker">AI Desktop Pet · WebGL · Electron · Zero npm</p>
+  <h2 id="modalTitle" class="dt-title">诺瓦 · 星白桌宠 <small>xingbai-desktop-pet</small></h2>
+  <p>基于一张原画（26 种表情 + 乱发差分）做成的 Windows AI 桌宠。单张立绘通过 WebGL 网格形变做出接近 Live2D 的效果，接入大模型对话与云端语音。不需要安装 Node.js，也没有任何 npm 依赖，连安装程序都是用 C# 自绘的。</p>
+  <h4>她能做什么</h4>
+  <ul class="dt-list">
+    <li><b>伪 Live2D</b>转头视差、歪头、呼吸、身体摇摆；头发、尾巴、裙摆、猫耳和手都有弹簧物理。眼皮下落式眨眼，虹膜跟随鼠标，说话时嘴型跟着音量动。</li>
+    <li><b>部位互动</b>头、猫耳、脸颊、头发、十字架项链、手、裙子、尾巴……各有专属反应。拽猫耳会弯折拉长再弹回，摸太久头发会被揉乱，「转身」后所有操作都随之镜像。</li>
+    <li><b>星空菜单</b>右键展开的圆形星空菜单就是她的头：顶上是猫耳，外圈是好感度光环，中心是她此刻的脸。指到哪一项，她就有反应。</li>
+    <li><b>AI 对话与语音</b>Claude 或任意 OpenAI 兼容接口，流式输出，情绪标签驱动表情。Azure、豆包、MiniMax、GPT-SoVITS 等云端语音逐句朗读，嘴型实时同步。</li>
+    <li><b>诺瓦的星历</b>月视图日历，一句话记事（「下午3点半 取快递」会自动识别时间），支持重复规则。到点她会举着小闹钟来提醒你。</li>
+    <li><b>Agent 工坊</b>给她做「会自己干活的小助手」：勾选能用的能力，设定运行时机和结果去向。内置早安简报、剪贴板翻译、晚间回顾等模板。</li>
+  </ul>
+  <h4>CG 鉴赏</h4>
+  <div class="dt-gallery">
+    <figure><img src="assets/img/nova-suitcase.jpg" alt="安装界面：诺瓦坐在行李箱上提着星星灯"><figcaption>安装界面 ·「可以让我搬到你的桌面上吗？」</figcaption></figure>
+    <figure><img src="assets/img/nova-workshop.jpg" alt="Agent 工坊：诺瓦在工作台前给小星星装齿轮"><figcaption>Agent 工坊 · 给小星星装齿轮</figcaption></figure>
+    <figure class="dt-g-sticker"><img src="assets/img/nova-chibi.png" alt="提醒卡片贴纸：诺瓦举着小闹钟"><figcaption>日程提醒 · 举着小闹钟</figcaption></figure>
+  </div>
+  <p class="dt-note">界面插画由 Codex CLI 生成，提示词都放在仓库的 tools/imagegen/ 里。</p>
+  <div class="dt-tags"><span>JavaScript</span><span>WebGL</span><span>Electron</span><span>Claude API</span><span>OpenAI 兼容</span><span>Azure TTS</span><span>C# 安装程序</span></div>
+  <div class="dt-actions"><a class="btn" href="https://github.com/lizitc/xingbai-desktop-pet" target="_blank" rel="noopener"><svg><use href="#i-github"/></svg>查看仓库<svg><use href="#i-arrow"/></svg></a></div>
 </template>
 
 <template id="tpl-detail-meihua">

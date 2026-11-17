@@ -28,6 +28,7 @@
       { who: '小栗', text: '欢迎来到「栗子のアトリエ」！我是这里的看板娘——小栗。' },
       { who: '小栗', text: '这里的主人叫栗子tc，是个对 AI、二次元和数字创作都充满好奇心的人。' },
       { who: '小栗', text: '比起只让 AI 回答问题，栗子更想让 AI 一起写代码、做桌宠、画角色、生成动画……' },
+      { who: '小栗', text: '对了对了！栗子刚刚公开了新作「诺瓦 · 星白桌宠」，点左上角那个 NEW 就能看到哦！' },
       { who: '小栗', text: '往下滚动，可以看到角色档案、作品、攻略路线，还有 ChatGPT 帮忙记下的「记忆存档」。' },
       { who: '小栗', text: '对了，试着点点我，或者……在我头上来回摸一摸？(｡•ㅅ•｡)' }
     ],
@@ -40,7 +41,9 @@
       '要不要去 GitHub 给栗子点个 Star？☆',
       '日语 N4……がんばります！',
       '莓华会在「工坊」里帮栗子干活，好羡慕……',
-      '作品能用了也不能停，细节还要继续打磨！'
+      '作品能用了也不能停，细节还要继续打磨！',
+      '新来的诺瓦是个安静慢热的孩子……我们会成为朋友吗？',
+      '听说诺瓦的星空菜单，其实就是她自己的头！好厉害……'
     ],
     face: ['脸、脸不可以戳啦……', '唔……会被戳出酒窝的！', '再戳就要鼓起来了哦！(｀・ω・´)'],
     head: ['嘿嘿……被摸头了。', '再、再摸一下也可以哦。'],
@@ -644,6 +647,19 @@
     }
     if (useCursor || (finePointer && !reduceMotion)) requestAnimationFrame(loop);
   })();
+
+  // 新作入口：滚动到作品卡片后高亮一下
+  $$('[data-spotlight]').forEach((a) => a.addEventListener('click', () => {
+    const target = document.getElementById(a.dataset.spotlight);
+    if (!target) return;
+    target.classList.add('in');
+    target.classList.remove('spotlight');
+    setTimeout(() => {
+      void target.offsetWidth;
+      target.classList.add('spotlight');
+      setTimeout(() => target.classList.remove('spotlight'), 2600);
+    }, reduceMotion ? 0 : 750);
+  }));
 
   // 全局点击星屑
   document.addEventListener('click', (e) => {
