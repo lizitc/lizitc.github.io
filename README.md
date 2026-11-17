@@ -1,5 +1,7 @@
 # 栗子tc · Kuri's Atelier
 
+线上地址：<https://www.lizitc.com/>（也可通过 <https://lizitc.github.io/> 访问，会自动跳转）
+
 栗子tc 的个人网站：一个「Galgame 标题画面 × 魔法阵」风格的单页主页。
 
 纯静态页面，没有构建步骤，也没有任何第三方脚本。
@@ -51,6 +53,11 @@ powershell -ExecutionPolicy Bypass -File deploy.ps1 -Message "New site"
 ```
 
 注意：这会用本目录的文件**整体替换** `lizitc.github.io` 仓库里的内容。
+
+## 自定义域名
+
+- 根目录的 `CNAME` 文件写着 `www.lizitc.com`，`deploy.ps1` 每次都会一起上传，并通过 API 设置 Pages 自定义域名、开启强制 HTTPS。不要删掉它，否则域名会被解绑。
+- DNS（百度云解析）：`www` → CNAME → `lizitc.github.io`。裸域 `lizitc.com` 如需跳转到 www，添加 4 条 A 记录：`185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`。
 
 ## 素材说明
 

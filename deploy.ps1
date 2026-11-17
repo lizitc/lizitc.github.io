@@ -63,6 +63,8 @@ $nojekyll = Join-Path $root '.nojekyll'
 if (-not (Test-Path $nojekyll)) { New-Item -ItemType File $nojekyll | Out-Null }
 
 $files = @('index.html', 'README.md', '.gitignore', '.nojekyll', 'serve.ps1', 'deploy.ps1')
+# CNAME holds the custom domain; it must be in every deploy or the domain gets unbound
+if (Test-Path (Join-Path $root 'CNAME')) { $files += 'CNAME' }
 $files += Get-ChildItem (Join-Path $root 'assets') -Recurse -File |
   ForEach-Object { $_.FullName.Substring($root.Length + 1).Replace('\', '/') }
 
@@ -92,4 +94,25 @@ if (-not (Exists "/repos/$owner/$repo/pages")) {
   Write-Host "GitHub Pages enabled."
 }
 $pages = Api GET "/repos/$owner/$repo/pages" $null
-Write-Host "Pages: $($pages.html_url)  status=$($pages.status)"
+
+# ---------- 5. Custom domain + HTTPS ----------
+$cnameFile = Join-Path $root 'CNAME'
+if (Test-Path $cnameFile) {
+  $domain = (Get-Content $cnameFile -Raw).Trim()
+  if ($pages.cname -ne $domain) {
+    Api PUT "/repos/$owner/$repo/pages" @{ cname = $domain } | Out-Null
+    Write-Host "Custom domain set: $domain"
+    $pages = Api GET "/repos/$owner/$repo/pages" $null
+  }
+  if (-not $pages.https_enforced) {
+    try {
+      Api PUT "/repos/$owner/$repo/pages" @{ https_enforced = $true } | Out-Null
+      Write-Host "HTTPS enforced."
+    } catch {
+      Write-Host "HTTPS certificate is not ready yet (GitHub issues it after DNS checks pass, usually within an hour)."
+      Write-Host "Run deploy.ps1 again later to enforce HTTPS."
+    }
+    $pages = Api GET "/repos/$owner/$repo/pages" $null
+  }
+}
+Write-Host "Pages: $($pages.html_url)  status=$($pages.status)  cname=$($pages.cname)  https_enforced=$($pages.https_enforced)"
