@@ -709,7 +709,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.25); }
   .title-menu { margin-top: 18px; }
   .title-menu > * { padding-block: 4px; }
   .tm-cn { font-size: 12px; }
-  .hero-char { right: -30%; height: 60svh; }
+  .hero-char { right: -12svh; height: 60svh; } /* 向右露出约七成，偏移量跟随立绘自身大小 */
   .adv { bottom: 26px; }
   .adv-body { min-height: 132px; padding: 30px 22px 24px; }
   .adv-name { left: 18px; }
